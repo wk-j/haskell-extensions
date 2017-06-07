@@ -34,5 +34,4 @@ someFunc =  do
                 , "ViewPatterns" ]
 
     let append x = "{-# LANGUAGE " ++ x ++ " #-}"
-
     mapM_ putStrLn (map append exts)
