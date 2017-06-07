@@ -3,35 +3,17 @@ module Lib
     ( someFunc
     ) where
 
+import System.Process
+import Data.List
+import Data.String.Utils
+
+(|>) x y = y x
+
 someFunc :: IO ()
-someFunc =  do 
-    let exts = [ "DatatypeContexts"
-                , "DefaultSignatures"
-                , "DeriveDataTypable"
-                , "DeriveGeneric"
-                , "DeriveFunctor"
-                , "DeriveFoldable"
-                , "DeriveTraversable"
-                , "GeneralizedNewtypeDriving"
-                , "DuplicateRecordFields"
-                , "ExistentialQuantification"
-                , "FlexibleContexts"
-                , "FlexibleInstances"
-                , "FunctionalDependencies"
-                , "GADTs"
-                , "ImplicitParams"
-                , "KindSignatures"
-                , "MultiParamTypeClasses"
-                , "NoMonomorphismRestriction"
-                , "OverlappingInstances"
-                , "Rank2Types"
-                , "RankNTypes"
-                , "ScopedTypeVariables"
-                , "TemplateHaskell"
-                , "TupleSections"
-                , "TypeFamilies"
-                , "UndecidableInstances"
-                , "ViewPatterns" ]
+someFunc =  do
+    -- ghc --supported-languages
+    ps <- readProcess "ghc" [ "--supported-languages" ] ""
+    let extensions = split "\n" ps |> filter ((/=) "")
 
     let append x = "{-# LANGUAGE " ++ x ++ " #-}"
-    mapM_ putStrLn (map append exts)
+    mapM_ putStrLn (map append extensions)
