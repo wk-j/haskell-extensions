@@ -1,3 +1,3 @@
 ## H-Extensions
 
-List of languages extensions that work with [vscode](https://github.com/wk-j/vscode-paste-me)
+List of languages extensions that work with [Paste Me](https://github.com/wk-j/vscode-paste-me).
